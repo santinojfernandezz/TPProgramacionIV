@@ -1,0 +1,79 @@
+.game-container {
+  min-height: 100vh;
+  padding: 2rem;
+  box-sizing: border-box;
+  background: #0f172a;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.game-card {
+  width: 100%;
+  max-width: 800px;
+  background: #1e293b;
+  padding: 2rem;
+  border-radius: 16px;
+  text-align: center;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 1rem;
+  color: #93c5fd;
+  text-decoration: none;
+}
+
+h1 {
+  margin-bottom: 1rem;
+}
+
+.description {
+  color: #cbd5e1;
+}
+
+.word {
+  display: flex;
+  justify-content: center;
+  gap: 0.8rem;
+  margin: 2rem 0;
+  font-size: 2.2rem;
+  font-weight: bold;
+  letter-spacing: 0.3rem;
+}
+
+.attempts {
+  font-size: 1.2rem;
+  color: #bfdbfe;
+}
+
+.letters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(45px, 1fr));
+  gap: 0.6rem;
+  margin-top: 2rem;
+}
+
+.letters button,
+.result button {
+  padding: 0.8rem;
+  border: none;
+  border-radius: 8px;
+  background: #3b82f6;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.letters button:disabled {
+  background: #475569;
+  cursor: not-allowed;
+}
+
+.result {
+  margin-top: 2rem;
+  padding: 1rem;
+  border-radius: 12px;
+  background: #334155;
+}

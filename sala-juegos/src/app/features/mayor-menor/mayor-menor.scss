@@ -1,0 +1,88 @@
+.game-container {
+  min-height: 100vh;
+  padding: 2rem;
+  box-sizing: border-box;
+  background: #0f172a;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.game-card {
+  width: 100%;
+  max-width: 650px;
+  background: #1e293b;
+  padding: 2rem;
+  border-radius: 16px;
+  text-align: center;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 1rem;
+  color: #93c5fd;
+  text-decoration: none;
+}
+
+.description {
+  color: #cbd5e1;
+}
+
+.card {
+  width: 180px;
+  height: 250px;
+  background: white;
+  color: #0f172a;
+  border-radius: 16px;
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 6px solid #e2e8f0;
+}
+
+.number {
+  font-size: 4rem;
+  font-weight: bold;
+}
+
+.suit {
+  font-size: 1.5rem;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.actions button,
+.result button {
+  padding: 0.9rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  background: #3b82f6;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:disabled {
+  background: #475569;
+  cursor: not-allowed;
+}
+
+.message {
+  margin-top: 1rem;
+  color: #bfdbfe;
+}
+
+.result {
+  margin-top: 2rem;
+  padding: 1rem;
+  border-radius: 12px;
+  background: #334155;
+}
