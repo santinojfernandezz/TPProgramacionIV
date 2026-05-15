@@ -1,14 +1,30 @@
 <section class="home-container">
   <div class="hero">
     <h1>Sala de Juegos</h1>
+
     <p>
       Poné a prueba tus capacidades cognitivas y motrices con nuestros juegos.
     </p>
 
-    <div class="hero-buttons">
-      <a routerLink="/login" class="btn primary">Iniciar Sesión</a>
-      <a routerLink="/register" class="btn secondary">Registrarse</a>
-      <a routerLink="/quien-soy" class="btn secondary">Quién Soy</a>
+    <div *ngIf="loading" class="loading-text">
+      Cargando usuario...
+    </div>
+
+    <div class="hero-buttons" *ngIf="!loading">
+      <ng-container *ngIf="!userProfile; else loggedTemplate">
+        <a routerLink="/login" class="btn primary">Iniciar Sesión</a>
+        <a routerLink="/register" class="btn secondary">Registrarse</a>
+      </ng-container>
+
+      <ng-template #loggedTemplate>
+        <span class="welcome-text">
+          Bienvenido, {{ userProfile.nombre || userProfile.email }}
+        </span>
+
+        <button class="btn secondary" type="button" (click)="logout()">
+          Cerrar Sesión
+        </button>
+      </ng-template>
     </div>
   </div>
 
@@ -16,21 +32,25 @@
     <div class="game-card">
       <h3>Ahorcado</h3>
       <p>Adiviná la palabra antes de quedarte sin intentos.</p>
+      <span class="status">Disponible en Sprint 3</span>
     </div>
 
     <div class="game-card">
       <h3>Mayor o Menor</h3>
       <p>Predecí si la próxima carta será mayor o menor.</p>
+      <span class="status">Disponible en Sprint 3</span>
     </div>
 
     <div class="game-card">
       <h3>Preguntados</h3>
       <p>Respondé correctamente y sumá puntos.</p>
+      <span class="status">Disponible en Sprint 4</span>
     </div>
 
     <div class="game-card">
       <h3>Juego Propio</h3>
       <p>Descubrí el desafío especial creado para esta sala.</p>
+      <span class="status">Disponible en Sprint 4</span>
     </div>
   </div>
 </section>

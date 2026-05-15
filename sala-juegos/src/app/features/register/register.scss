@@ -55,6 +55,20 @@ button:hover {
   background: #2563eb;
 }
 
+button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.error-message {
+  margin-top: 1rem;
+  padding: 0.8rem;
+  border-radius: 8px;
+  background: #7f1d1d;
+  color: #fecaca;
+  text-align: center;
+}
+
 p {
   text-align: center;
   margin-top: 1rem;
@@ -67,4 +81,14 @@ a {
 
 a:hover {
   text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  .register-container {
+    padding: 1rem;
+  }
+
+  .register-card {
+    padding: 1.5rem;
+  }
 }
