@@ -1,0 +1,36 @@
+@if (profile()) {
+  <section class="profile-container">
+
+    <div class="profile-card">
+      <img
+        [src]="profile().avatar_url"
+        [alt]="profile().login"
+      />
+
+      <h2>{{ profile().name }}</h2>
+
+      <p>{{ profile().bio }}</p>
+
+      <div class="stats">
+        <span>Repos: {{ profile().public_repos }}</span>
+        <span>Seguidores: {{ profile().followers }}</span>
+        <span>Siguiendo: {{ profile().following }}</span>
+      </div>
+
+      <a
+        [href]="profile().html_url"
+        target="_blank"
+      >
+        Ver perfil GitHub
+      </a>
+    </div>
+
+    <div class="game-info">
+      <h3>Mi Juego Propio</h3>
+      <p>
+        Explicá acá qué juego propio vas a desarrollar y por qué lo elegiste.
+      </p>
+    </div>
+
+  </section>
+}
