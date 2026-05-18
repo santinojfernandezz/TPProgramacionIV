@@ -1,36 +1,66 @@
-<section class="home-container">
-  <div class="hero">
-    <h1>Sala de Juegos</h1>
-    <p>
-      Poné a prueba tus capacidades cognitivas y motrices con nuestros juegos.
-    </p>
+<section class="home-container app-page">
+  <div class="container">
+    <div class="hero app-card fade-up text-center mx-auto">
+      <span class="badge badge-app rounded-pill px-3 py-2 mb-3">
+        Programación IV · Sala de Juegos
+      </span>
 
-    <div class="hero-buttons">
-      <a routerLink="/login" class="btn primary">Iniciar Sesión</a>
-      <a routerLink="/register" class="btn secondary">Registrarse</a>
-      <a routerLink="/quien-soy" class="btn secondary">Quién Soy</a>
+      <h1 class="app-title display-4 mb-3">
+        Sala de Juegos
+      </h1>
+
+      <p class="app-subtitle lead mb-4">
+        Poné a prueba tus capacidades cognitivas y motrices con juegos simples,
+        dinámicos y pensados para competir por el mejor resultado.
+      </p>
+
+      <div class="hero-buttons d-flex justify-content-center gap-3 flex-wrap">
+        <a routerLink="/login" class="btn btn-app-primary px-4 py-2">
+          Iniciar sesión
+        </a>
+
+        <a routerLink="/register" class="btn btn-app-outline px-4 py-2">
+          Registrarse
+        </a>
+
+        <a routerLink="/quien-soy" class="btn btn-app-outline px-4 py-2">
+          Quién soy
+        </a>
+      </div>
     </div>
-  </div>
 
-  <div class="games-preview">
-    <div class="game-card">
-      <h3>Ahorcado</h3>
-      <p>Adiviná la palabra antes de quedarte sin intentos.</p>
-    </div>
+    <div class="games-preview row g-4 mt-4">
+      <div class="col-12 col-md-6 col-xl-3">
+        <article class="game-card app-card h-100 soft-pop">
+          <div class="game-icon">🎯</div>
+          <h3>Ahorcado</h3>
+          <p>Adiviná la palabra antes de quedarte sin intentos.</p>
+        </article>
+      </div>
 
-    <div class="game-card">
-      <h3>Mayor o Menor</h3>
-      <p>Predecí si la próxima carta será mayor o menor.</p>
-    </div>
+      <div class="col-12 col-md-6 col-xl-3">
+        <article class="game-card app-card h-100 soft-pop">
+          <div class="game-icon">🃏</div>
+          <h3>Mayor o Menor</h3>
+          <p>Predecí si la próxima carta será mayor o menor.</p>
+        </article>
+      </div>
 
-    <div class="game-card">
-      <h3>Preguntados</h3>
-      <p>Respondé correctamente y sumá puntos.</p>
-    </div>
+      <div class="col-12 col-md-6 col-xl-3">
+        <article class="game-card app-card h-100 soft-pop">
+          <div class="game-icon">❓</div>
+          <h3>Preguntados</h3>
+          <p>Respondé correctamente y sumá puntos.</p>
+        </article>
+      </div>
 
-    <div class="game-card">
-      <h3>Juego Propio</h3>
-      <p>Descubrí el desafío especial creado para esta sala.</p>
+      <div class="col-12 col-md-6 col-xl-3">
+        <article class="game-card app-card h-100 soft-pop">
+          <div class="game-icon">🚀</div>
+          <h3>Space Shot</h3>
+          <p>Tocá solo los meteoritos peligrosos antes de que choquen.</p>
+        </article>
+      </div>
     </div>
   </div>
 </section>
