@@ -1,63 +1,98 @@
-<section class="register-container">
-  <form class="register-card" [formGroup]="form" (ngSubmit)="onSubmit()">
-    <h2>Registro</h2>
+<section class="register-container app-page">
+  <div class="container">
+    <a routerLink="/home" class="back-home-btn">
+      ← Volver
+    </a>
 
-    <div class="form-group">
-      <label>Email</label>
-      <input
-        type="email"
-        placeholder="Ingresá tu email"
-        formControlName="email"
-      >
+    <div class="row justify-content-center align-items-center">
+      <div class="col-12 col-md-9 col-lg-6">
+        <form
+          class="register-card app-card fade-up"
+          [formGroup]="form"
+          (ngSubmit)="onSubmit()"
+        >
+          <span class="badge badge-app rounded-pill px-3 py-2 mb-3">
+            Nuevo jugador
+          </span>
+
+          <h2 class="app-title mb-2">
+            Registro
+          </h2>
+
+          <p class="app-subtitle mb-4">
+            Creá tu cuenta para ingresar a la sala y participar de los juegos.
+          </p>
+
+          <div class="row g-3">
+            <div class="col-12">
+              <label class="form-label">Email</label>
+              <input
+                class="form-control"
+                type="email"
+                placeholder="Ingresá tu email"
+                formControlName="email"
+              >
+            </div>
+
+            <div class="col-12 col-md-6">
+              <label class="form-label">Nombre</label>
+              <input
+                class="form-control"
+                type="text"
+                placeholder="Ingresá tu nombre"
+                formControlName="nombre"
+              >
+            </div>
+
+            <div class="col-12 col-md-6">
+              <label class="form-label">Apellido</label>
+              <input
+                class="form-control"
+                type="text"
+                placeholder="Ingresá tu apellido"
+                formControlName="apellido"
+              >
+            </div>
+
+            <div class="col-12">
+              <label class="form-label">Edad</label>
+              <input
+                class="form-control"
+                type="number"
+                placeholder="Ingresá tu edad"
+                formControlName="edad"
+              >
+            </div>
+
+            <div class="col-12">
+              <label class="form-label">Contraseña</label>
+              <input
+                class="form-control"
+                type="password"
+                placeholder="Ingresá tu contraseña"
+                formControlName="password"
+              >
+            </div>
+          </div>
+
+          <button
+            class="btn btn-app-primary w-100 py-2 mt-4 mb-3"
+            type="submit"
+            [disabled]="loading"
+          >
+            {{ loading ? 'Registrando...' : 'Registrarse' }}
+          </button>
+
+          <div *ngIf="errorMessage" class="error-message">
+            {{ errorMessage }}
+          </div>
+
+          <p class="auth-link mb-0 text-center">
+            ¿Ya tenés cuenta?
+            <a routerLink="/login">Iniciá sesión</a>
+          </p>
+        </form>
+      </div>
     </div>
-
-    <div class="form-group">
-      <label>Nombre</label>
-      <input
-        type="text"
-        placeholder="Ingresá tu nombre"
-        formControlName="nombre"
-      >
-    </div>
-
-    <div class="form-group">
-      <label>Apellido</label>
-      <input
-        type="text"
-        placeholder="Ingresá tu apellido"
-        formControlName="apellido"
-      >
-    </div>
-
-    <div class="form-group">
-      <label>Edad</label>
-      <input
-        type="number"
-        placeholder="Ingresá tu edad"
-        formControlName="edad"
-      >
-    </div>
-
-    <div class="form-group">
-      <label>Contraseña</label>
-      <input
-        type="password"
-        placeholder="Ingresá tu contraseña"
-        formControlName="password"
-      >
-    </div>
-
-    <button type="submit" [disabled]="loading">
-      {{ loading ? 'Registrando...' : 'Registrarse' }}
-    </button>
-
-    <div *ngIf="errorMessage" class="error-message">
-      {{ errorMessage }}
-    </div>
-
-    <p>
-      ¿Ya tenés cuenta?
-      <a routerLink="/login">Iniciá sesión</a>
-    </p>
-  </form>
+  </div>
 </section>
