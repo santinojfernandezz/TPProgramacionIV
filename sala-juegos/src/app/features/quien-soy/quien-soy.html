@@ -1,36 +1,112 @@
 @if (profile()) {
-  <section class="profile-container">
+  <section class="profile-container app-page">
+    <div class="container">
+      <div class="row g-4 align-items-stretch">
+        <div class="col-12 col-lg-5">
+          <article class="profile-card app-card fade-up h-100 text-center">
+            <img
+              class="profile-avatar"
+              [src]="profile().avatar_url"
+              [alt]="profile().login"
+            />
 
-    <div class="profile-card">
-      <img
-        [src]="profile().avatar_url"
-        [alt]="profile().login"
-      />
+            <span class="badge badge-app rounded-pill px-3 py-2 mb-3">
+              Datos desde GitHub API
+            </span>
 
-      <h2>{{ profile().name }}</h2>
+            <h2 class="app-title mb-2">
+              {{ profile().name || profile().login }}
+            </h2>
 
-      <p>{{ profile().bio }}</p>
+            <p class="app-subtitle mb-4">
+              {{ profile().bio || 'Perfil de GitHub utilizado para la presentación del alumno.' }}
+            </p>
 
-      <div class="stats">
-        <span>Repos: {{ profile().public_repos }}</span>
-        <span>Seguidores: {{ profile().followers }}</span>
-        <span>Siguiendo: {{ profile().following }}</span>
+            <div class="stats row g-3 mb-4">
+              <div class="col-4">
+                <div class="stat-box">
+                  <strong>{{ profile().public_repos }}</strong>
+                  <span>Repos</span>
+                </div>
+              </div>
+
+              <div class="col-4">
+                <div class="stat-box">
+                  <strong>{{ profile().followers }}</strong>
+                  <span>Seguidores</span>
+                </div>
+              </div>
+
+              <div class="col-4">
+                <div class="stat-box">
+                  <strong>{{ profile().following }}</strong>
+                  <span>Siguiendo</span>
+                </div>
+              </div>
+            </div>
+
+            <a
+              class="btn btn-app-primary w-100"
+              [href]="profile().html_url"
+              target="_blank"
+            >
+              Ver perfil GitHub
+            </a>
+          </article>
+        </div>
+
+        <div class="col-12 col-lg-7">
+          <article class="game-info app-card fade-up h-100">
+            <span class="badge badge-app rounded-pill px-3 py-2 mb-3">
+              Juego propio
+            </span>
+
+            <h3 class="app-title mb-3">
+              Space Shot
+            </h3>
+
+            <p class="app-subtitle">
+              Space Shot es un juego de reflejos y precisión donde aparecen
+              planetas, meteoritos y naves. El jugador debe tocar solamente los
+              meteoritos peligrosos antes de que choquen.
+            </p>
+
+            <div class="rules mt-4">
+              <h4>Cómo se juega</h4>
+
+              <ul>
+                <li>Aparecen distintos objetos espaciales en pantalla.</li>
+                <li>El jugador debe tocar únicamente los meteoritos peligrosos.</li>
+                <li>Si toca un objeto incorrecto, pierde puntos o vidas.</li>
+                <li>El objetivo es conseguir el mayor puntaje posible antes de finalizar la partida.</li>
+              </ul>
+            </div>
+
+            <div class="reason mt-4">
+              <h4>Por qué elegí este juego</h4>
+
+              <p>
+                Lo elegí porque me hace acordar a uno de los juegos
+                que más disfrutaba en mi niñez, en la sala de juegos llamada JuegosFriv
+                (que por suerte sigue existiendo, pero no es como antes). 
+                Ademas, me pareció un concepto divertido para desarrollar en el tiempo que teniamos.
+              </p>
+            </div>
+          </article>
+        </div>
       </div>
-
-      <a
-        [href]="profile().html_url"
-        target="_blank"
-      >
-        Ver perfil GitHub
-      </a>
     </div>
-
-    <div class="game-info">
-      <h3>Mi Juego Propio</h3>
-      <p>
-        Explicá acá qué juego propio vas a desarrollar y por qué lo elegiste.
-      </p>
+  </section>
+} @else {
+  <section class="profile-container app-page">
+    <div class="container">
+      <div class="app-card loading-card text-center mx-auto fade-up">
+        <div class="spinner-border mb-3" role="status"></div>
+        <h2 class="app-title">Cargando perfil...</h2>
+        <p class="app-subtitle mb-0">
+          Estamos trayendo los datos desde la API de GitHub.
+        </p>
+      </div>
     </div>
-
   </section>
 }
