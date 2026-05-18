@@ -1,42 +1,98 @@
 .profile-container {
-  min-height: 100vh;
-  padding: 3rem;
-  background: #0f172a;
-  color: white;
+  color: var(--app-text);
 }
 
-.profile-card {
-  max-width: 600px;
-  margin: auto;
-  background: #1e293b;
+.profile-card,
+.game-info,
+.loading-card {
   padding: 2rem;
-  border-radius: 18px;
-  text-align: center;
 }
 
-.profile-card img {
-  width: 140px;
-  height: 140px;
+.profile-avatar {
+  width: 148px;
+  height: 148px;
+  object-fit: cover;
   border-radius: 50%;
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
+  border: 4px solid rgba(0, 184, 148, 0.45);
+  box-shadow: 0 0 35px rgba(0, 184, 148, 0.2);
 }
 
-.stats {
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-  margin: 1rem 0;
+.stat-box {
+  padding: 1rem 0.5rem;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(255, 255, 255, 0.075);
 }
 
-a {
-  color: #60a5fa;
-  text-decoration: none;
+.stat-box strong {
+  display: block;
+  font-size: 1.35rem;
+  color: var(--app-accent);
 }
 
-.game-info {
-  max-width: 800px;
-  margin: 2rem auto 0;
-  background: #1e293b;
-  padding: 2rem;
-  border-radius: 18px;
+.stat-box span {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--app-muted);
+}
+
+.game-info h3 {
+  font-size: 2.2rem;
+}
+
+.rules,
+.reason {
+  padding: 1.25rem;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(255, 255, 255, 0.075);
+}
+
+.rules h4,
+.reason h4 {
+  color: var(--app-accent);
+  font-size: 1.1rem;
+  font-weight: 800;
+  margin-bottom: 0.75rem;
+}
+
+.rules ul {
+  margin: 0;
+  padding-left: 1.2rem;
+  color: var(--app-muted);
+}
+
+.rules li {
+  margin-bottom: 0.5rem;
+}
+
+.reason p {
+  color: var(--app-muted);
+  margin-bottom: 0;
+}
+
+.loading-card {
+  max-width: 520px;
+}
+
+.spinner-border {
+  color: var(--app-primary);
+}
+
+@media (max-width: 768px) {
+  .profile-card,
+  .game-info,
+  .loading-card {
+    padding: 1.5rem;
+  }
+
+  .game-info h3 {
+    font-size: 1.8rem;
+  }
+
+  .profile-avatar {
+    width: 120px;
+    height: 120px;
+  }
 }
