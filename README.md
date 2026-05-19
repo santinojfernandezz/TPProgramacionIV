@@ -1,4 +1,4 @@
-# Sala de Juegos - Sprint 2
+# Sala de Juegos - Sprint 1
 
 Trabajo Práctico #1 de Programación IV - UTN Avellaneda.
 
@@ -19,108 +19,68 @@ Trabajo Práctico #1 de Programación IV - UTN Avellaneda.
 - TypeScript
 - Bootstrap
 - SCSS
-- Supabase
-- Supabase Auth
-- Supabase Database
+- HTML
 - Vercel
+- API de GitHub
 
 ---
 
 # Descripción del proyecto
 
-Sala de Juegos es una aplicación web desarrollada en Angular con Supabase como backend.
+Sala de Juegos es una aplicación web desarrollada en Angular para el Trabajo Práctico #1 de Programación IV.
 
-En este sprint se incorporó autenticación real, registro de usuarios, guardado de datos en base de datos, cierre de sesión, guards de rutas y comportamiento condicional del Home según el estado de sesión.
-
-Este sprint incluye todo lo desarrollado en Sprint 1.
+En este primer sprint se creó la estructura inicial del proyecto, las pantallas principales, la navegación básica y la página de presentación del alumno utilizando datos obtenidos desde la API de GitHub.
 
 ---
 
-# Funcionalidades del Sprint 1 incluidas
+# Funcionalidades implementadas
 
-- Proyecto Angular creado.
-- Deploy en Vercel.
-- Componentes:
-  - Home.
-  - Login.
-  - Registro.
-  - Quién Soy.
-- Navegación entre componentes.
-- Quién Soy consume datos desde la API de GitHub.
+## Proyecto Angular
+
+- Creación del proyecto Angular.
+- Organización inicial de carpetas y componentes.
+- Configuración base de la aplicación.
+
+## Deploy
+
+- Deploy realizado en Vercel.
+- Aplicación disponible online para su evaluación.
+
+## Componentes creados
+
+- Home / Bienvenida.
+- Login.
+- Registro.
+- Quién Soy.
+
+## Navegación
+
+- Navegación entre las pantallas principales.
+- Accesos desde el Home hacia las secciones principales.
+
+## Página Quién Soy
+
+- Consumo de datos desde la API de GitHub.
+- Visualización de:
+  - Nombre del perfil.
+  - Imagen de perfil.
+  - Biografía.
+  - Repositorios públicos.
+  - Seguidores.
+  - Seguidos.
+- Explicación inicial del juego propio.
+
+## Diseño
+
+- Implementación de Bootstrap.
+- Estilos personalizados con SCSS.
+- Diseño uniforme para las pantallas principales.
 - Favicon personalizado.
-- Bootstrap y estilos generales.
 
 ---
 
-# Funcionalidades implementadas en Sprint 2
+# Estado del Sprint 1
 
-## Autenticación
+Sprint 1 completado.
 
-- Login con Supabase Auth.
-- Registro con Supabase Auth.
-- Cierre de sesión.
-- Manejo de sesión activa.
-
-## Registro de usuarios
-
-El registro permite cargar:
-
-- Email.
-- Nombre.
-- Apellido.
-- Edad.
-- Contraseña.
-
-La contraseña no se guarda en la base de datos propia, solo se usa para la autenticación de Supabase.
-
-## Base de datos
-
-Se guarda la información del usuario en la tabla `usuarios`.
-
-Campos principales:
-
-- `id`
-- `email`
-- `nombre`
-- `apellido`
-- `edad`
-- `created_at`
-
-## Home condicional
-
-El Home cambia según el estado del usuario:
-
-- Si el usuario no está logueado:
-  - Muestra botón para iniciar sesión.
-  - Muestra botón para registrarse.
-  - Muestra acceso a Quién Soy.
-
-- Si el usuario está logueado:
-  - Muestra el nombre del usuario.
-  - Muestra botón para cerrar sesión.
-  - Permite acceder a las secciones privadas.
-
-## Guards de rutas
-
-- Rutas privadas protegidas con `authGuard`.
-- Rutas de login y registro protegidas con `guestGuard`.
-- Un usuario logueado no puede volver al login o registro.
-- Un usuario no logueado no puede acceder a juegos o secciones privadas.
-
-## Login rápido
-
-- Se agregaron botones de inicio de sesión rápido.
-- Permiten probar la aplicación de forma más ágil con usuarios ya registrados.
-
-## Mensajes visuales
-
-- Se muestran mensajes visuales ante errores de login o registro.
-- No se utiliza `alert()`.
-
----
-
-# Estado del Sprint 2
-
-Sprint 2 completado.
-
-La aplicación quedó con autenticación funcional, registro de usuarios en Supabase, guards de rutas, Home dinámico y login rápido para testing.
+La aplicación quedó creada, desplegada, navegable y con las pantallas principales requeridas por la consigna.
