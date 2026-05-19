@@ -6,12 +6,10 @@ Trabajo Práctico #1 de Programación IV - UTN Avellaneda.
 
 - Nombre: Santino Jonas Fernández
 - Materia: Programación IV
-- Carrera: Tecnicatura Universitaria en Programación
-- Institución: UTN Avellaneda
 
 ## Deploy
 
-- Link del deploy: https://tp-programacion-2a1ger5nx-santinojfernandezzs-projects.vercel.app
+- Link del deploy: [https://tp-programacion-2a1ger5nx-santinojfernandezzs-projects.vercel.app](https://tp-programacion-o2k1dvw2m-santinojfernandezzs-projects.vercel.app)
 
 ## Tecnologías utilizadas
 
