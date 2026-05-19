@@ -68,17 +68,31 @@
             <p class="app-subtitle">
               Space Shot es un juego de reflejos y precisión donde aparecen
               planetas, meteoritos y naves. El jugador debe tocar solamente los
-              meteoritos peligrosos antes de que choquen.
+              meteoritos peligrosos antes de que lleguen al final de la pantalla.
+              Si toca un planeta o una nave, comete un error y pierde puntos.
             </p>
 
             <div class="rules mt-4">
               <h4>Cómo se juega</h4>
 
               <ul>
-                <li>Aparecen distintos objetos espaciales en pantalla.</li>
-                <li>El jugador debe tocar únicamente los meteoritos peligrosos.</li>
-                <li>Si toca un objeto incorrecto, pierde puntos o vidas.</li>
-                <li>El objetivo es conseguir el mayor puntaje posible antes de finalizar la partida.</li>
+                <li>Aparecen objetos espaciales en movimiento dentro del área de juego.</li>
+                <li>Los meteoritos peligrosos se identifican con el símbolo ☄️.</li>
+                <li>El jugador debe tocar únicamente los meteoritos para destruirlos.</li>
+                <li>Cada meteorito destruido suma puntos y cuenta como acierto.</li>
+                <li>Tocar planetas 🪐 o naves 🚀 suma errores y resta puntos.</li>
+                <li>Si un meteorito llega al final de la pantalla, también suma un error.</li>
+              </ul>
+            </div>
+
+            <div class="rules mt-4">
+              <h4>Finalización y desempeño</h4>
+
+              <ul>
+                <li>La partida dura 30 segundos.</li>
+                <li>También puede terminar antes si el jugador llega al límite de errores.</li>
+                <li>El desempeño se mide por puntaje, aciertos, errores y tiempo jugado.</li>
+                <li>Al finalizar, el resultado se guarda en Supabase y aparece en la página Resultados.</li>
               </ul>
             </div>
 
@@ -86,10 +100,12 @@
               <h4>Por qué elegí este juego</h4>
 
               <p>
-                Lo elegí porque me hace acordar a uno de los juegos
-                que más disfrutaba en mi niñez, en la sala de juegos llamada JuegosFriv
-                (que por suerte sigue existiendo, pero no es como antes). 
-                Ademas, me pareció un concepto divertido para desarrollar en el tiempo que teniamos.
+                Lo elegi porque me hace acordar a uno de los juegos que mas
+                me encantaba jugar en mi infancia, en la sala de juegos llamada JuegosFriv
+                (que por suerte sigue existiendo, pero no es como antes).
+                Además, me pareció un concepto divertido para desarrollar en el
+                tiempo que teníamos, porque combina reflejos, precisión y una
+                lógica simple de entender.
               </p>
             </div>
           </article>

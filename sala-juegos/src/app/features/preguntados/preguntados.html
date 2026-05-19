@@ -1,0 +1,152 @@
+<section class="preguntados-page">
+  <div class="container py-5">
+
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+      <div>
+        <p class="section-label mb-1">Sprint 4</p>
+        <h1 class="page-title mb-1">Preguntados</h1>
+        <p class="page-subtitle mb-0">
+          Respondé preguntas traídas desde una API externa. Cada respuesta correcta suma puntos.
+        </p>
+      </div>
+
+      <a routerLink="/home" class="btn btn-outline-light">
+        Volver al Home
+      </a>
+    </div>
+
+    <div *ngIf="mensaje" class="alert custom-alert mb-4" [ngClass]="'alert-' + tipoMensaje">
+      {{ mensaje }}
+    </div>
+
+    <div *ngIf="cargando" class="card game-card text-center p-5">
+      <div class="spinner-border text-light mx-auto mb-3" role="status"></div>
+      <h2 class="h4 mb-2">Cargando preguntas...</h2>
+      <p class="mb-0 text-soft">
+        Estamos buscando informacion para preparar la partida.
+      </p>
+    </div>
+
+    <div *ngIf="!cargando && !partidaFinalizada && preguntaActual" class="row g-4">
+
+      <div class="col-12 col-lg-4">
+        <div class="card info-card h-100">
+          <div class="card-body">
+            <h2 class="h5 mb-4">Estado de la partida</h2>
+
+            <div class="stat-item">
+              <span>Pregunta</span>
+              <strong>{{ preguntaActualIndex + 1 }} / {{ totalPreguntas }}</strong>
+            </div>
+
+            <div class="stat-item">
+              <span>Puntaje</span>
+              <strong>{{ puntaje }}</strong>
+            </div>
+
+            <div class="stat-item">
+              <span>Aciertos</span>
+              <strong class="text-success">{{ aciertos }}</strong>
+            </div>
+
+            <div class="stat-item">
+              <span>Errores</span>
+              <strong class="text-danger">{{ errores }}</strong>
+            </div>
+
+            <div class="stat-item">
+              <span>Tiempo</span>
+              <strong>{{ formatearTiempo(tiempoSegundos) }}</strong>
+            </div>
+
+            <div class="progress mt-4">
+              <div
+                class="progress-bar"
+                role="progressbar"
+                [style.width.%]="progreso"
+                [attr.aria-valuenow]="progreso"
+                aria-valuemin="0"
+                aria-valuemax="100">
+                {{ progreso }}%
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-lg-8">
+        <div class="card game-card h-100">
+          <div class="card-body">
+            <div class="d-flex justify-content-between flex-wrap gap-2 mb-3">
+              <span class="badge rounded-pill text-bg-primary">
+                {{ preguntaActual.categoria }}
+              </span>
+
+              <span class="badge rounded-pill text-bg-warning dificultad">
+                {{ preguntaActual.dificultad | titlecase }}
+              </span>
+            </div>
+
+            <h2 class="question-title mb-4">
+              {{ preguntaActual.pregunta }}
+            </h2>
+
+            <div class="options-grid">
+              <button
+                *ngFor="let opcion of preguntaActual.opciones"
+                type="button"
+                class="btn option-btn"
+                [ngClass]="obtenerClaseOpcion(opcion)"
+                [disabled]="mostrandoRespuesta"
+                (click)="seleccionarRespuesta(opcion)">
+                {{ opcion }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div *ngIf="!cargando && partidaFinalizada" class="card final-card text-center">
+      <div class="card-body p-4 p-md-5">
+        <p class="section-label mb-2">Partida terminada</p>
+
+        <h2 class="mb-3">Resultado final</h2>
+
+        <div class="results-grid my-4">
+          <div class="result-box">
+            <span>Puntaje</span>
+            <strong>{{ puntaje }}</strong>
+          </div>
+
+          <div class="result-box">
+            <span>Aciertos</span>
+            <strong>{{ aciertos }}</strong>
+          </div>
+
+          <div class="result-box">
+            <span>Errores</span>
+            <strong>{{ errores }}</strong>
+          </div>
+
+          <div class="result-box">
+            <span>Tiempo</span>
+            <strong>{{ formatearTiempo(tiempoSegundos) }}</strong>
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-center gap-3 flex-wrap">
+          <button type="button" class="btn btn-primary px-4" (click)="iniciarPartida()">
+            Jugar otra vez
+          </button>
+
+          <a routerLink="/resultados" class="btn btn-outline-light px-4">
+            Ver resultados
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

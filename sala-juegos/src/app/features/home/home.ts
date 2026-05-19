@@ -30,9 +30,7 @@ export class Home implements OnInit {
 
     try {
       this.userProfile = await this.authService.getCurrentUserProfile();
-      console.log('Perfil actual:', this.userProfile);
     } catch (error) {
-      console.error('Error cargando usuario:', error);
       this.userProfile = null;
     } finally {
       this.loading = false;

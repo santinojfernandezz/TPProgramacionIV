@@ -1,0 +1,220 @@
+.space-shot-page {
+  min-height: calc(100vh - 70px);
+  background:
+    radial-gradient(circle at top left, rgba(251, 146, 60, 0.22), transparent 35%),
+    radial-gradient(circle at bottom right, rgba(59, 130, 246, 0.22), transparent 35%),
+    linear-gradient(135deg, #0f172a, #111827);
+  color: #f8fafc;
+}
+
+.section-label {
+  color: #fdba74;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.page-title {
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.page-subtitle {
+  color: #cbd5e1;
+}
+
+.game-card,
+.info-card {
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  border-radius: 1.5rem;
+  background: rgba(15, 23, 42, 0.88);
+  color: #f8fafc;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(12px);
+  animation: fadeUp 0.35s ease both;
+}
+
+.custom-alert {
+  border: 0;
+  border-radius: 1rem;
+  font-weight: 600;
+}
+
+.stat-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+
+  span {
+    color: #cbd5e1;
+  }
+
+  strong {
+    color: #f8fafc;
+  }
+}
+
+.rules-box {
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  border-radius: 1rem;
+  background: rgba(30, 41, 59, 0.65);
+  padding: 1rem;
+
+  h3 {
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+    font-weight: 800;
+  }
+
+  ul {
+    margin: 0;
+    padding-left: 1.1rem;
+    color: #cbd5e1;
+  }
+
+  li {
+    margin-bottom: 0.4rem;
+  }
+}
+
+.game-area {
+  position: relative;
+  min-height: 520px;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.18) 0 1px, transparent 2px),
+    radial-gradient(circle at 80% 30%, rgba(255, 255, 255, 0.16) 0 1px, transparent 2px),
+    radial-gradient(circle at 50% 70%, rgba(255, 255, 255, 0.13) 0 1px, transparent 2px),
+    linear-gradient(180deg, #020617, #111827 60%, #1e1b4b);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.stars-layer {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle, rgba(255, 255, 255, 0.8) 1px, transparent 1px),
+    radial-gradient(circle, rgba(255, 255, 255, 0.5) 1px, transparent 1px);
+  background-size: 80px 80px, 120px 120px;
+  background-position: 0 0, 40px 60px;
+  opacity: 0.3;
+  animation: starsMove 8s linear infinite;
+}
+
+.space-object {
+  position: absolute;
+  z-index: 3;
+  width: 78px;
+  height: 78px;
+  transform: translate(-50%, -50%);
+  border: 0;
+  border-radius: 50%;
+  background: rgba(15, 23, 42, 0.65);
+  font-size: 2.35rem;
+  line-height: 1;
+  cursor: pointer;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  display: grid;
+  place-items: center;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -14px;
+    border-radius: 50%;
+  }
+
+  &:hover {
+    transform: translate(-50%, -50%) scale(1.12);
+  }
+}
+
+.objeto-meteorito {
+  box-shadow: 0 0 24px rgba(251, 146, 60, 0.55);
+}
+
+.objeto-planeta {
+  box-shadow: 0 0 24px rgba(59, 130, 246, 0.45);
+}
+
+.objeto-nave {
+  box-shadow: 0 0 24px rgba(168, 85, 247, 0.45);
+}
+
+.game-overlay {
+  position: absolute;
+  z-index: 4;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 2rem;
+  background: rgba(2, 6, 23, 0.72);
+  backdrop-filter: blur(6px);
+
+  > div {
+    max-width: 480px;
+  }
+
+  h2 {
+    font-weight: 800;
+    margin-bottom: 0.75rem;
+  }
+
+  p {
+    color: #cbd5e1;
+    margin-bottom: 0;
+  }
+}
+
+.overlay-icon {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+}
+
+@keyframes starsMove {
+  from {
+    background-position: 0 0, 40px 60px;
+  }
+
+  to {
+    background-position: 0 120px, 40px 180px;
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .game-area {
+    min-height: 420px;
+  }
+
+  .space-object {
+    width: 76px;
+    height: 76px;
+    font-size: 2.1rem;
+
+    &::before {
+      inset: -16px;
+    }
+  }
+}
