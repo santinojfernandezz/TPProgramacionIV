@@ -1,4 +1,4 @@
-@if (profile()) {
+@if (profile(); as githubProfile) {
   <section class="profile-container app-page">
     <div class="container">
       <div class="row g-4 align-items-stretch">
@@ -6,8 +6,8 @@
           <article class="profile-card app-card fade-up h-100 text-center">
             <img
               class="profile-avatar"
-              [src]="profile().avatar_url"
-              [alt]="profile().login"
+              [src]="githubProfile.avatar_url"
+              [alt]="githubProfile.login"
             />
 
             <span class="badge badge-app rounded-pill px-3 py-2 mb-3">
@@ -15,31 +15,31 @@
             </span>
 
             <h2 class="app-title mb-2">
-              {{ profile().name || profile().login }}
+              {{ githubProfile.name || githubProfile.login }}
             </h2>
 
             <p class="app-subtitle mb-4">
-              {{ profile().bio || 'Perfil de GitHub utilizado para la presentación del alumno.' }}
+              {{ githubProfile.bio || 'Perfil de GitHub utilizado para la presentación del alumno.' }}
             </p>
 
             <div class="stats row g-3 mb-4">
               <div class="col-4">
                 <div class="stat-box">
-                  <strong>{{ profile().public_repos }}</strong>
+                  <strong>{{ githubProfile.public_repos }}</strong>
                   <span>Repos</span>
                 </div>
               </div>
 
               <div class="col-4">
                 <div class="stat-box">
-                  <strong>{{ profile().followers }}</strong>
+                  <strong>{{ githubProfile.followers }}</strong>
                   <span>Seguidores</span>
                 </div>
               </div>
 
               <div class="col-4">
                 <div class="stat-box">
-                  <strong>{{ profile().following }}</strong>
+                  <strong>{{ githubProfile.following }}</strong>
                   <span>Siguiendo</span>
                 </div>
               </div>
@@ -47,7 +47,7 @@
 
             <a
               class="btn btn-app-primary w-100"
-              [href]="profile().html_url"
+              [href]="githubProfile.html_url"
               target="_blank"
             >
               Ver perfil GitHub
@@ -88,8 +88,8 @@
               <p>
                 Lo elegí porque me hace acordar a uno de los juegos
                 que más disfrutaba en mi niñez, en la sala de juegos llamada JuegosFriv
-                (que por suerte sigue existiendo, pero no es como antes). 
-                Ademas, me pareció un concepto divertido para desarrollar en el tiempo que teniamos.
+                que por suerte sigue existiendo, pero no es como antes.
+                Además, me pareció un concepto divertido para desarrollar en el tiempo que teníamos.
               </p>
             </div>
           </article>
