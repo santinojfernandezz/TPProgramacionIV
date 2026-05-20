@@ -13,6 +13,7 @@
 
 .auth-link {
   color: var(--app-muted);
+  margin-top: 1rem;
 }
 
 .auth-link a {
@@ -36,6 +37,50 @@
 .back-home-btn:hover {
   color: var(--app-accent);
   transform: translateX(-3px);
+}
+
+button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.error-message {
+  margin-bottom: 1rem;
+  padding: 0.85rem;
+  border-radius: 0.85rem;
+  background: rgba(225, 112, 85, 0.16);
+  border: 1px solid rgba(225, 112, 85, 0.35);
+  color: #ffd6cc;
+  text-align: center;
+  font-weight: 700;
+}
+
+.quick-login {
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 1rem;
+}
+
+.quick-login h3 {
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+  text-align: center;
+  color: var(--app-accent);
+  font-weight: 800;
+}
+
+.quick-btn {
+  background: rgba(255, 255, 255, 0.07);
+  color: var(--app-text);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-weight: 700;
+}
+
+.quick-btn:hover {
+  background: rgba(0, 184, 148, 0.16);
+  border-color: rgba(0, 184, 148, 0.35);
+  color: var(--app-text);
 }
 
 @media (max-width: 576px) {

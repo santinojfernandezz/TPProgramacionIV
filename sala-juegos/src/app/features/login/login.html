@@ -1,12 +1,16 @@
 <section class="login-container app-page">
-  <div class="container">          
+  <div class="container">
     <a routerLink="/home" class="back-home-btn">
       ← Volver
     </a>
 
     <div class="row justify-content-center align-items-center">
       <div class="col-12 col-md-8 col-lg-5">
-        <form class="login-card app-card fade-up">
+        <form
+          class="login-card app-card fade-up"
+          [formGroup]="form"
+          (ngSubmit)="onSubmit()"
+        >
           <span class="badge badge-app rounded-pill px-3 py-2 mb-3">
             Acceso de jugador
           </span>
@@ -25,6 +29,7 @@
               class="form-control"
               type="email"
               placeholder="Ingresá tu email"
+              formControlName="email"
             >
           </div>
 
@@ -34,15 +39,35 @@
               class="form-control"
               type="password"
               placeholder="Ingresá tu contraseña"
+              formControlName="password"
             >
           </div>
 
           <button
             class="btn btn-app-primary w-100 py-2 mb-3"
-            type="button"
+            type="submit"
+            [disabled]="loading"
           >
-            Ingresar
+            {{ loading ? 'Ingresando...' : 'Ingresar' }}
           </button>
+
+          <div *ngIf="errorMessage" class="error-message">
+            {{ errorMessage }}
+          </div>
+
+          <div class="quick-login">
+            <h3>Acceso rápido</h3>
+
+            <button
+              type="button"
+              class="btn quick-btn w-100 mb-2"
+              *ngFor="let user of quickUsers"
+              (click)="quickLogin(user)"
+              [disabled]="loading"
+            >
+              {{ user.label }}
+            </button>
+          </div>
 
           <p class="auth-link mb-0 text-center">
             ¿No tenés cuenta?

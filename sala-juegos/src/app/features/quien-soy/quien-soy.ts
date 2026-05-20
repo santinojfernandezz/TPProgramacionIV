@@ -1,5 +1,6 @@
 import { Component, inject, signal, OnInit } from '@angular/core';
 import { GithubService } from '../../core/services/github.service';
+import { GithubProfile } from '../../core/models/github-profile.model';
 
 @Component({
   selector: 'app-quien-soy',
@@ -11,7 +12,7 @@ export class QuienSoy implements OnInit {
 
   private githubService = inject(GithubService);
 
-  profile = signal<any>(null);
+  profile = signal<GithubProfile | null>(null);
 
   ngOnInit(): void {
     this.githubService

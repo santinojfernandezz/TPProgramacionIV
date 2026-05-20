@@ -3,9 +3,14 @@
     <a routerLink="/home" class="back-home-btn">
       ← Volver
     </a>
+
     <div class="row justify-content-center align-items-center">
       <div class="col-12 col-md-9 col-lg-6">
-        <form class="register-card app-card fade-up">
+        <form
+          class="register-card app-card fade-up"
+          [formGroup]="form"
+          (ngSubmit)="onSubmit()"
+        >
           <span class="badge badge-app rounded-pill px-3 py-2 mb-3">
             Nuevo jugador
           </span>
@@ -25,6 +30,7 @@
                 class="form-control"
                 type="email"
                 placeholder="Ingresá tu email"
+                formControlName="email"
               >
             </div>
 
@@ -34,6 +40,7 @@
                 class="form-control"
                 type="text"
                 placeholder="Ingresá tu nombre"
+                formControlName="nombre"
               >
             </div>
 
@@ -43,6 +50,7 @@
                 class="form-control"
                 type="text"
                 placeholder="Ingresá tu apellido"
+                formControlName="apellido"
               >
             </div>
 
@@ -52,6 +60,7 @@
                 class="form-control"
                 type="number"
                 placeholder="Ingresá tu edad"
+                formControlName="edad"
               >
             </div>
 
@@ -61,16 +70,22 @@
                 class="form-control"
                 type="password"
                 placeholder="Ingresá tu contraseña"
+                formControlName="password"
               >
             </div>
           </div>
 
           <button
             class="btn btn-app-primary w-100 py-2 mt-4 mb-3"
-            type="button"
+            type="submit"
+            [disabled]="loading"
           >
-            Registrarse
+            {{ loading ? 'Registrando...' : 'Registrarse' }}
           </button>
+
+          <div *ngIf="errorMessage" class="error-message">
+            {{ errorMessage }}
+          </div>
 
           <p class="auth-link mb-0 text-center">
             ¿Ya tenés cuenta?

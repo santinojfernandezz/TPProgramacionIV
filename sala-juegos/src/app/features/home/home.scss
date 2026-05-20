@@ -12,6 +12,21 @@
   margin: 0 auto;
 }
 
+.loading-text {
+  margin-top: 1.5rem;
+  color: var(--app-accent);
+  font-weight: 700;
+}
+
+.hero-buttons {
+  margin-top: 2rem;
+}
+
+.welcome-text {
+  color: var(--app-accent);
+  font-weight: 800;
+}
+
 .games-preview {
   margin-bottom: 2rem;
 }
@@ -52,6 +67,18 @@
 .game-card p {
   margin: 0;
   color: var(--app-muted);
+}
+
+.status {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(253, 203, 110, 0.12);
+  border: 1px solid rgba(253, 203, 110, 0.28);
+  color: var(--app-accent);
+  font-size: 0.85rem;
+  font-weight: 700;
 }
 
 @media (max-width: 768px) {
