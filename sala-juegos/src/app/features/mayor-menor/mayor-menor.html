@@ -1,0 +1,42 @@
+<section class="game-container">
+  <div class="game-card">
+    <a routerLink="/home" class="back-link">← Volver al Home</a>
+
+    <h1>Mayor o Menor</h1>
+
+    <p class="description">
+      Adiviná si la próxima carta será mayor o menor que la actual.
+    </p>
+
+    <div class="card">
+      <span class="number">{{ cartaActual.numero }}</span>
+      <span class="suit">{{ cartaActual.palo }}</span>
+    </div>
+
+    <p>Ronda: {{ rondas }} / {{ maxRondas }}</p>
+    <p>Aciertos: {{ aciertos }}</p>
+
+    <div class="actions">
+      <button type="button" [disabled]="juegoTerminado" (click)="elegir('mayor')">
+        Mayor
+      </button>
+
+      <button type="button" [disabled]="juegoTerminado" (click)="elegir('menor')">
+        Menor
+      </button>
+    </div>
+
+    <p class="message" *ngIf="mensaje">
+      {{ mensaje }}
+    </p>
+
+    <div *ngIf="juegoTerminado" class="result">
+      <h2>Juego terminado</h2>
+      <p>Puntaje final: {{ aciertos * 10 }}</p>
+
+      <button type="button" (click)="nuevoJuego()">
+        Jugar otra vez
+      </button>
+    </div>
+  </div>
+</section>

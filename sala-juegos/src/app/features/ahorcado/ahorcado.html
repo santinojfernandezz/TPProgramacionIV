@@ -1,0 +1,40 @@
+<section class="game-container">
+  <div class="game-card">
+    <a routerLink="/home" class="back-link">← Volver al Home</a>
+
+    <h1>Ahorcado</h1>
+
+    <p class="description">
+      Elegí letras para adivinar la palabra antes de quedarte sin intentos.
+    </p>
+
+    <div class="word">
+      <span *ngFor="let letra of palabraMostrada">
+        {{ letra }}
+      </span>
+    </div>
+
+    <p class="attempts">
+      Intentos restantes: {{ intentosRestantes }}
+    </p>
+
+    <div class="letters">
+      <button
+        *ngFor="let letra of letras"
+        type="button"
+        [disabled]="letraUsada(letra) || juegoTerminado"
+        (click)="seleccionarLetra(letra)"
+      >
+        {{ letra }}
+      </button>
+    </div>
+
+    <div *ngIf="juegoTerminado" class="result">
+      <h2>{{ resultadoMensaje }}</h2>
+
+      <button type="button" (click)="nuevoJuego()">
+        Jugar otra vez
+      </button>
+    </div>
+  </div>
+</section>

@@ -1,4 +1,4 @@
-# Sala de Juegos - Sprint 2
+# Sala de Juegos - Sprint 3
 
 Trabajo Práctico #1 de Programación IV - UTN Avellaneda.
 
@@ -22,6 +22,7 @@ Trabajo Práctico #1 de Programación IV - UTN Avellaneda.
 - Supabase
 - Supabase Auth
 - Supabase Database
+- Supabase Realtime
 - Vercel
 
 ---
@@ -30,97 +31,124 @@ Trabajo Práctico #1 de Programación IV - UTN Avellaneda.
 
 Sala de Juegos es una aplicación web desarrollada en Angular con Supabase como backend.
 
-En este sprint se incorporó autenticación real, registro de usuarios, guardado de datos en base de datos, cierre de sesión, guards de rutas y comportamiento condicional del Home según el estado de sesión.
+En este sprint se agregaron dos juegos obligatorios y una sala de chat global en tiempo real. Los juegos guardan resultados en Supabase y el chat permite enviar mensajes que se actualizan automáticamente sin recargar la página.
 
-Este sprint incluye todo lo desarrollado en Sprint 1.
+Este sprint incluye todo lo desarrollado en Sprint 1 y Sprint 2.
 
 ---
 
-# Funcionalidades del Sprint 1 incluidas
+# Funcionalidades acumuladas
+
+## Sprint 1
 
 - Proyecto Angular creado.
 - Deploy en Vercel.
-- Componentes:
-  - Home.
-  - Login.
-  - Registro.
-  - Quién Soy.
-- Navegación entre componentes.
-- Quién Soy consume datos desde la API de GitHub.
+- Componentes Home, Login, Registro y Quién Soy.
+- Navegación entre pantallas.
+- Página Quién Soy con datos desde la API de GitHub.
 - Favicon personalizado.
 - Bootstrap y estilos generales.
 
+## Sprint 2
+
+- Login con Supabase.
+- Registro con Supabase.
+- Guardado de usuarios en base de datos.
+- Logout.
+- Home condicional según sesión.
+- Guards de rutas.
+- Login rápido.
+
 ---
 
-# Funcionalidades implementadas en Sprint 2
+# Funcionalidades implementadas en Sprint 3
 
-## Autenticación
+## Juego Ahorcado
 
-- Login con Supabase Auth.
-- Registro con Supabase Auth.
-- Cierre de sesión.
-- Manejo de sesión activa.
+- Juego Ahorcado funcional.
+- Entrada de datos mediante botones de letras.
+- No se utiliza el teclado para jugar.
+- Control de letras seleccionadas.
+- Control de errores.
+- Condición de victoria.
+- Condición de derrota.
+- Guardado del resultado en Supabase al finalizar la partida.
 
-## Registro de usuarios
+Datos guardados:
 
-El registro permite cargar:
+- Usuario que jugó.
+- Juego.
+- Resultado.
+- Puntaje.
+- Tiempo.
+- Datos adicionales del desempeño.
 
-- Email.
-- Nombre.
-- Apellido.
-- Edad.
-- Contraseña.
+## Juego Mayor o Menor
 
-La contraseña no se guarda en la base de datos propia, solo se usa para la autenticación de Supabase.
+- Juego Mayor o Menor funcional.
+- Se muestran cartas.
+- El jugador debe adivinar si la próxima carta será mayor o menor.
+- Control de aciertos.
+- Control de errores.
+- Condición de finalización.
+- Guardado del resultado en Supabase al finalizar la partida.
 
-## Base de datos
+Datos guardados:
 
-Se guarda la información del usuario en la tabla `usuarios`.
+- Usuario que jugó.
+- Juego.
+- Resultado.
+- Puntaje.
+- Tiempo.
+- Cantidad de aciertos.
+- Datos adicionales del desempeño.
+
+## Chat global
+
+- Sala de chat única para usuarios registrados y logueados.
+- Envío de mensajes.
+- Guardado de mensajes en Supabase.
+- Actualización automática usando Supabase Realtime.
+- Los mensajes aparecen sin recargar la página.
+- Cada mensaje muestra:
+  - Usuario.
+  - Mensaje.
+  - Fecha y hora.
+- El mensaje propio se diferencia visualmente del resto.
+
+## Tablas utilizadas
+
+### `mensajes_chat`
+
+Guarda los mensajes del chat global.
 
 Campos principales:
 
 - `id`
-- `email`
-- `nombre`
-- `apellido`
-- `edad`
+- `usuario_id`
+- `nombre_usuario`
+- `mensaje`
 - `created_at`
 
-## Home condicional
+### `resultados_juegos`
 
-El Home cambia según el estado del usuario:
+Guarda los resultados de los juegos.
 
-- Si el usuario no está logueado:
-  - Muestra botón para iniciar sesión.
-  - Muestra botón para registrarse.
-  - Muestra acceso a Quién Soy.
+Campos principales:
 
-- Si el usuario está logueado:
-  - Muestra el nombre del usuario.
-  - Muestra botón para cerrar sesión.
-  - Permite acceder a las secciones privadas.
-
-## Guards de rutas
-
-- Rutas privadas protegidas con `authGuard`.
-- Rutas de login y registro protegidas con `guestGuard`.
-- Un usuario logueado no puede volver al login o registro.
-- Un usuario no logueado no puede acceder a juegos o secciones privadas.
-
-## Login rápido
-
-- Se agregaron botones de inicio de sesión rápido.
-- Permiten probar la aplicación de forma más ágil con usuarios ya registrados.
-
-## Mensajes visuales
-
-- Se muestran mensajes visuales ante errores de login o registro.
-- No se utiliza `alert()`.
+- `id`
+- `usuario_id`
+- `juego`
+- `resultado`
+- `puntaje`
+- `tiempo_segundos`
+- `datos`
+- `created_at`
 
 ---
 
-# Estado del Sprint 2
+# Estado del Sprint 3
 
-Sprint 2 completado.
+Sprint 3 completado.
 
-La aplicación quedó con autenticación funcional, registro de usuarios en Supabase, guards de rutas, Home dinámico y login rápido para testing.
+La aplicación quedó con Ahorcado, Mayor o Menor, chat global en tiempo real y persistencia de datos en Supabase.

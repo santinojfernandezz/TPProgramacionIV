@@ -32,7 +32,11 @@
 }
 
 .game-card {
+  display: block;
+  height: 100%;
   padding: 1.6rem;
+  text-decoration: none;
+  color: var(--app-text);
   transition:
     transform 0.2s ease,
     border-color 0.2s ease,
@@ -40,9 +44,18 @@
 }
 
 .game-card:hover {
+  color: var(--app-text);
   transform: translateY(-6px);
   border-color: rgba(0, 184, 148, 0.45);
   box-shadow: 0 22px 50px rgba(0, 0, 0, 0.35);
+}
+
+.active-card {
+  cursor: pointer;
+}
+
+.active-card:hover {
+  border-color: rgba(0, 184, 148, 0.65);
 }
 
 .game-icon {
@@ -64,6 +77,12 @@
   color: var(--app-text);
 }
 
+.game-card h2 {
+  font-size: 0.9rem;
+  color: var(--app-muted);
+  margin-bottom: 1rem;
+}
+
 .game-card p {
   margin: 0;
   color: var(--app-muted);
@@ -81,7 +100,58 @@
   font-weight: 700;
 }
 
-@media (max-width: 768px) {
+.available {
+  background: rgba(0, 184, 148, 0.14);
+  border-color: rgba(0, 184, 148, 0.35);
+  color: var(--app-primary);
+}
+
+.logged-welcome {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem 1.4rem;
+  border-radius: 1.25rem;
+  background: rgba(0, 184, 148, 0.12);
+  border: 1px solid rgba(0, 184, 148, 0.35);
+  box-shadow: 0 16px 35px rgba(0, 0, 0, 0.22);
+}
+
+.logged-icon {
+  width: 58px;
+  height: 58px;
+  display: grid;
+  place-items: center;
+  border-radius: 1rem;
+  background: rgba(0, 184, 148, 0.18);
+  border: 1px solid rgba(0, 184, 148, 0.35);
+  font-size: 2rem;
+}
+
+.logged-welcome h2 {
+  margin: 0;
+  color: var(--app-text);
+  font-size: 1.6rem;
+  font-weight: 900;
+}
+
+.logged-welcome p {
+  margin: 0.25rem 0 0;
+  color: var(--app-muted);
+  font-size: 0.95rem;
+}
+
+@media (max-width: 576px) {
+  .logged-welcome {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .logged-welcome h2 {
+    font-size: 1.35rem;
+  }
+
   .hero {
     padding: 2rem 1.25rem;
   }
