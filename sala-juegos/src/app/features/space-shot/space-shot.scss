@@ -1,0 +1,212 @@
+.space-shot-page {
+  min-height: calc(100vh - 70px);
+  background:
+    radial-gradient(circle at top left, rgba(0, 184, 148, 0.16), transparent 35%),
+    #061917;
+  color: var(--app-text);
+}
+
+.section-label {
+  color: var(--app-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.page-title {
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: var(--app-text);
+}
+
+.page-subtitle {
+  color: var(--app-muted);
+}
+
+.game-card,
+.info-card {
+  border: 1px solid rgba(0, 184, 148, 0.22);
+  border-radius: 1.5rem;
+  background: rgba(17, 28, 38, 0.94);
+  color: var(--app-text);
+  box-shadow: 0 24px 55px rgba(0, 0, 0, 0.32);
+  backdrop-filter: blur(12px);
+}
+
+.custom-alert {
+  border: 0;
+  border-radius: 1rem;
+  font-weight: 600;
+}
+
+.stat-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid rgba(0, 184, 148, 0.18);
+
+  span {
+    color: var(--app-muted);
+  }
+
+  strong {
+    color: var(--app-text);
+  }
+}
+
+.rules-box {
+  border: 1px solid rgba(0, 184, 148, 0.22);
+  border-radius: 1rem;
+  background: rgba(2, 18, 16, 0.55);
+  padding: 1rem;
+
+  h3 {
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+    font-weight: 800;
+    color: var(--app-text);
+  }
+
+  ul {
+    margin: 0;
+    padding-left: 1.1rem;
+    color: var(--app-muted);
+  }
+
+  li {
+    margin-bottom: 0.4rem;
+  }
+}
+
+.game-area {
+  position: relative;
+  min-height: 520px;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.18) 0 1px, transparent 2px),
+    radial-gradient(circle at 80% 30%, rgba(255, 255, 255, 0.16) 0 1px, transparent 2px),
+    radial-gradient(circle at 50% 70%, rgba(255, 255, 255, 0.13) 0 1px, transparent 2px),
+    linear-gradient(180deg, #020617, #061917 60%, #0b2b26);
+  border: 1px solid rgba(0, 184, 148, 0.22);
+}
+
+.stars-layer {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle, rgba(255, 255, 255, 0.8) 1px, transparent 1px),
+    radial-gradient(circle, rgba(255, 255, 255, 0.5) 1px, transparent 1px);
+  background-size: 80px 80px, 120px 120px;
+  background-position: 0 0, 40px 60px;
+  opacity: 0.3;
+  animation: starsMove 8s linear infinite;
+}
+
+.space-object {
+  position: absolute;
+  z-index: 3;
+  width: 78px;
+  height: 78px;
+  transform: translate(-50%, -50%);
+  border: 0;
+  border-radius: 50%;
+  background: rgba(2, 18, 16, 0.72);
+  font-size: 2.35rem;
+  line-height: 1;
+  cursor: pointer;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  display: grid;
+  place-items: center;
+  transition:
+    transform 0.12s ease,
+    box-shadow 0.12s ease,
+    background 0.12s ease;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -14px;
+    border-radius: 50%;
+  }
+
+  &:hover {
+    transform: translate(-50%, -50%) scale(1.12);
+  }
+}
+
+.objeto-meteorito {
+  box-shadow: 0 0 24px rgba(0, 184, 148, 0.55);
+}
+
+.objeto-planeta {
+  box-shadow: 0 0 24px rgba(0, 184, 148, 0.42);
+}
+
+.objeto-nave {
+  box-shadow: 0 0 24px rgba(0, 184, 148, 0.42);
+}
+
+.game-overlay {
+  position: absolute;
+  z-index: 4;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 2rem;
+  background: rgba(2, 18, 16, 0.78);
+  backdrop-filter: blur(6px);
+
+  > div {
+    max-width: 480px;
+  }
+
+  h2 {
+    font-weight: 800;
+    margin-bottom: 0.75rem;
+    color: var(--app-text);
+  }
+
+  p {
+    color: var(--app-muted);
+    margin-bottom: 0;
+  }
+}
+
+.overlay-icon {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+}
+
+@keyframes starsMove {
+  from {
+    background-position: 0 0, 40px 60px;
+  }
+
+  to {
+    background-position: 0 120px, 40px 180px;
+  }
+}
+
+@media (max-width: 768px) {
+  .game-area {
+    min-height: 420px;
+  }
+
+  .space-object {
+    width: 76px;
+    height: 76px;
+    font-size: 2.1rem;
+
+    &::before {
+      inset: -16px;
+    }
+  }
+}

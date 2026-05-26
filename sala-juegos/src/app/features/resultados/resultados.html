@@ -1,0 +1,128 @@
+<section class="resultados-page">
+  <div class="container py-5">
+
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+      <div>
+        <p class="section-label mb-1">Sprint 4</p>
+        <h1 class="page-title mb-1">Resultados</h1>
+        <p class="page-subtitle mb-0">
+          Tablas de desempeño de los cuatro juegos, ordenadas de mejor puntaje a peor.
+        </p>
+      </div>
+
+      <div class="d-flex gap-2 flex-wrap">
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="cargarResultados()">
+          Actualizar
+        </button>
+
+        <a routerLink="/home" class="btn btn-outline-light">
+          Volver al Home
+        </a>
+      </div>
+    </div>
+
+    <div *ngIf="cargando" class="card resultados-card text-center p-5">
+      <div class="spinner-border text-light mx-auto mb-3" role="status"></div>
+      <h2 class="h4 mb-2">Cargando resultados...</h2>
+      <p class="mb-0 text-soft">
+        Estamos consultando los resultados guardados.
+      </p>
+    </div>
+
+    <div *ngIf="!cargando" class="row g-4">
+      <div class="col-12" *ngFor="let tabla of tablas">
+        <div class="card resultados-card">
+          <div class="card-body p-4">
+            <div class="d-flex justify-content-between align-items-start flex-wrap gap-3 mb-3">
+              <div>
+                <div class="d-flex align-items-center gap-2 mb-1">
+                  <span class="table-icon">{{ tabla.icono }}</span>
+                  <h2 class="h4 mb-0">{{ tabla.titulo }}</h2>
+                </div>
+
+                <p class="table-description mb-0">
+                  {{ tabla.descripcion }}
+                </p>
+              </div>
+
+              <span class="badge rounded-pill text-bg-success">
+                {{ tabla.resultados.length }} resultado/s
+              </span>
+            </div>
+
+            <div *ngIf="tabla.resultados.length === 0" class="empty-state">
+              Todavía no hay resultados guardados para este juego.
+            </div>
+
+            <div *ngIf="tabla.resultados.length > 0" class="table-responsive">
+              <table class="table table-dark table-hover align-middle resultados-table">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Jugador</th>
+                    <th>Resultado</th>
+                    <th>Puntaje</th>
+                    <th>Tiempo</th>
+                    <th>Aciertos</th>
+                    <th>Errores</th>
+                    <th>Detalle</th>
+                    <th>Fecha</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr *ngFor="let resultado of tabla.resultados; let i = index">
+                    <td>
+                      <span class="rank-badge">
+                        {{ i + 1 }}
+                      </span>
+                    </td>
+
+                    <td>
+                      <strong>{{ obtenerNombreJugador(resultado) }}</strong>
+                    </td>
+
+                    <td>
+                      <span class="resultado-pill">
+                        {{ resultado.resultado }}
+                      </span>
+                    </td>
+
+                    <td>
+                      <strong>{{ resultado.puntaje }}</strong>
+                    </td>
+
+                    <td>
+                      {{ formatearTiempo(resultado.tiempo_segundos) }}
+                    </td>
+
+                    <td>
+                      {{ obtenerAciertos(resultado) }}
+                    </td>
+
+                    <td>
+                      {{ obtenerErrores(resultado) }}
+                    </td>
+
+                    <td class="detalle-cell">
+                      {{ obtenerDetalle(resultado) }}
+                    </td>
+
+                    <td>
+                      {{ formatearFecha(resultado.created_at) }}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

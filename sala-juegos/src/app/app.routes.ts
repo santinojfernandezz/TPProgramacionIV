@@ -38,10 +38,28 @@ export const routes: Routes = [
       import('./features/mayor-menor/mayor-menor').then(m => m.MayorMenor)
   },
   {
+    path: 'preguntados',
+    canActivate: [authGuard],
+    loadComponent: () =>
+      import('./features/preguntados/preguntados').then(m => m.Preguntados)
+  },
+  {
+    path: 'space-shot',
+    canActivate: [authGuard],
+    loadComponent: () =>
+      import('./features/space-shot/space-shot').then(m => m.SpaceShot)
+  },
+  {
     path: 'chat',
     canActivate: [authGuard],
     loadComponent: () =>
       import('./features/chat/chat').then(m => m.Chat)
+  },
+  {
+    path: 'resultados',
+    canActivate: [authGuard],
+    loadComponent: () =>
+      import('./features/resultados/resultados').then(m => m.Resultados)
   },
   {
     path: '',

@@ -1,0 +1,133 @@
+<section class="space-shot-page">
+  <div class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+      <div>
+        <p class="section-label mb-1">Sprint 4 · Juego propio</p>
+        <h1 class="page-title mb-1">Space Shot</h1>
+        <p class="page-subtitle mb-0">
+          Tocá solo los meteoritos peligrosos antes de que choquen. Evitá planetas y naves.
+        </p>
+      </div>
+
+      <a routerLink="/home" class="btn btn-outline-light">
+        Volver al Home
+      </a>
+    </div>
+
+    <div class="alert custom-alert mb-4" [ngClass]="'alert-' + tipoMensaje">
+      {{ mensaje }}
+    </div>
+
+    <div class="row g-4">
+      <div class="col-12 col-lg-4">
+        <div class="card info-card h-100">
+          <div class="card-body">
+            <h2 class="h5 mb-4">Estado de la partida</h2>
+
+            <div class="stat-item">
+              <span>Puntaje</span>
+              <strong>{{ puntaje }}</strong>
+            </div>
+
+            <div class="stat-item">
+              <span>Aciertos</span>
+              <strong class="text-success">{{ aciertos }}</strong>
+            </div>
+
+            <div class="stat-item">
+              <span>Errores</span>
+              <strong class="text-danger">{{ errores }} / {{ maxErrores }}</strong>
+            </div>
+
+            <div class="stat-item">
+              <span>Tiempo</span>
+              <strong>{{ formatearTiempo(tiempoRestante) }}s</strong>
+            </div>
+
+            <div class="rules-box mt-4">
+              <h3>Reglas</h3>
+
+              <ul>
+                <li>☄️ Tocá meteoritos para sumar puntos.</li>
+                <li>🪐 No toques planetas.</li>
+                <li>🚀 No toques naves.</li>
+                <li>Si un meteorito llega al final, suma error.</li>
+                <li>La partida termina por tiempo o por 5 errores.</li>
+              </ul>
+            </div>
+
+            <div class="d-grid gap-2 mt-4">
+              <button
+                *ngIf="!partidaIniciada && !partidaFinalizada"
+                type="button"
+                class="btn btn-primary"
+                (click)="iniciarPartida()">
+                Iniciar partida
+              </button>
+
+              <button
+                *ngIf="partidaFinalizada"
+                type="button"
+                class="btn btn-primary"
+                (click)="reiniciarPartida()">
+                Jugar otra vez
+              </button>
+
+              <a
+                *ngIf="partidaFinalizada"
+                routerLink="/resultados"
+                class="btn btn-outline-light">
+                Ver resultados
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-lg-8">
+        <div class="card game-card h-100">
+          <div class="card-body">
+            <div class="game-area">
+              <div *ngIf="!partidaIniciada && !partidaFinalizada" class="game-overlay">
+                <div>
+                  <div class="overlay-icon">🚀</div>
+                  <h2>Preparado para jugar</h2>
+                  <p>
+                    Cuando empiece la partida, aparecerán objetos espaciales.
+                    Tocá únicamente los meteoritos.
+                  </p>
+                </div>
+              </div>
+
+              <div *ngIf="partidaFinalizada" class="game-overlay">
+                <div>
+                  <div class="overlay-icon">🏁</div>
+                  <h2>Partida finalizada</h2>
+                  <p>
+                    Puntaje: <strong>{{ puntaje }}</strong> ·
+                    Aciertos: <strong>{{ aciertos }}</strong> ·
+                    Errores: <strong>{{ errores }}</strong>
+                  </p>
+                </div>
+              </div>
+
+              <button
+                *ngFor="let objeto of objetos"
+                type="button"
+                class="space-object"
+                [ngClass]="obtenerClaseObjeto(objeto.tipo)"
+                [style.left.%]="objeto.x"
+                [style.top.%]="objeto.y"
+                (pointerdown)="tocarObjeto($event, objeto)">
+                {{ objeto.emoji }}
+              </button>
+
+              <div class="stars-layer"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

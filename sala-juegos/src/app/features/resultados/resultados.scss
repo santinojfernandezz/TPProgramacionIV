@@ -1,0 +1,108 @@
+.resultados-page {
+  min-height: calc(100vh - 70px);
+  background:
+    radial-gradient(circle at top left, rgba(0, 184, 148, 0.16), transparent 35%),
+    #061917;
+  color: var(--app-text);
+}
+
+.section-label {
+  color: var(--app-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.page-title {
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: var(--app-text);
+}
+
+.page-subtitle,
+.text-soft,
+.table-description {
+  color: var(--app-muted);
+}
+
+.resultados-card {
+  border: 1px solid rgba(0, 184, 148, 0.22);
+  border-radius: 1.5rem;
+  background: rgba(17, 28, 38, 0.94);
+  color: var(--app-text);
+  box-shadow: 0 24px 55px rgba(0, 0, 0, 0.32);
+  backdrop-filter: blur(12px);
+}
+
+.custom-alert {
+  border: 0;
+  border-radius: 1rem;
+  font-weight: 600;
+}
+
+.table-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 1rem;
+  background: rgba(0, 184, 148, 0.14);
+  border: 1px solid rgba(0, 184, 148, 0.28);
+  font-size: 1.6rem;
+}
+
+.empty-state {
+  border: 1px dashed rgba(0, 184, 148, 0.35);
+  border-radius: 1rem;
+  color: var(--app-muted);
+  padding: 1.25rem;
+  background: rgba(0, 184, 148, 0.08);
+}
+
+.resultados-table {
+  margin-bottom: 0;
+  --bs-table-bg: rgba(2, 18, 16, 0.55);
+  --bs-table-border-color: rgba(0, 184, 148, 0.18);
+
+  th {
+    color: var(--app-accent);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+  }
+
+  td {
+    color: var(--app-text);
+    vertical-align: middle;
+  }
+}
+
+.rank-badge {
+  display: inline-grid;
+  place-items: center;
+  min-width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  background: var(--app-primary);
+  color: #06201c;
+  font-weight: 900;
+}
+
+.resultado-pill {
+  display: inline-block;
+  border-radius: 999px;
+  padding: 0.35rem 0.7rem;
+  background: rgba(0, 184, 148, 0.14);
+  border: 1px solid rgba(0, 184, 148, 0.28);
+  color: var(--app-primary);
+  font-size: 0.85rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.detalle-cell {
+  min-width: 220px;
+  color: var(--app-muted) !important;
+}

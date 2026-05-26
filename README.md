@@ -1,4 +1,4 @@
-# Sala de Juegos - Sprint 3
+# Sala de Juegos - Sprint 4
 
 Trabajo Práctico #1 de Programación IV - UTN Avellaneda.
 
@@ -23,6 +23,7 @@ Trabajo Práctico #1 de Programación IV - UTN Avellaneda.
 - Supabase Auth
 - Supabase Database
 - Supabase Realtime
+- API REST Countries
 - Vercel
 
 ---
@@ -31,9 +32,9 @@ Trabajo Práctico #1 de Programación IV - UTN Avellaneda.
 
 Sala de Juegos es una aplicación web desarrollada en Angular con Supabase como backend.
 
-En este sprint se agregaron dos juegos obligatorios y una sala de chat global en tiempo real. Los juegos guardan resultados en Supabase y el chat permite enviar mensajes que se actualizan automáticamente sin recargar la página.
+En este sprint se completan los juegos requeridos por el TP, agregando Preguntados, el juego propio Space Shot y la página Resultados con cuatro tablas de desempeño.
 
-Este sprint incluye todo lo desarrollado en Sprint 1 y Sprint 2.
+Este sprint incluye todo lo desarrollado en Sprint 1, Sprint 2 y Sprint 3.
 
 ---
 
@@ -59,39 +60,37 @@ Este sprint incluye todo lo desarrollado en Sprint 1 y Sprint 2.
 - Guards de rutas.
 - Login rápido.
 
+## Sprint 3
+
+- Ahorcado funcional.
+- Mayor o Menor funcional.
+- Chat global en tiempo real.
+- Resultados guardados en Supabase.
+
 ---
 
-# Funcionalidades implementadas en Sprint 3
+# Funcionalidades implementadas en Sprint 4
 
-## Juego Ahorcado
+## Preguntados
 
-- Juego Ahorcado funcional.
-- Entrada de datos mediante botones de letras.
-- No se utiliza el teclado para jugar.
-- Control de letras seleccionadas.
-- Control de errores.
-- Condición de victoria.
-- Condición de derrota.
-- Guardado del resultado en Supabase al finalizar la partida.
+- Juego Preguntados funcional.
+- Obtiene datos desde una API externa.
+- Se utiliza REST Countries como API externa.
+- Las preguntas se generan en español a partir de la información de países.
+- Las opciones de respuesta son botones.
+- Se controla:
+  - Pregunta actual.
+  - Aciertos.
+  - Errores.
+  - Puntaje.
+  - Tiempo.
+- Al finalizar la partida se guarda el resultado en Supabase.
 
-Datos guardados:
+Tipos de preguntas:
 
-- Usuario que jugó.
-- Juego.
-- Resultado.
-- Puntaje.
-- Tiempo.
-- Datos adicionales del desempeño.
-
-## Juego Mayor o Menor
-
-- Juego Mayor o Menor funcional.
-- Se muestran cartas.
-- El jugador debe adivinar si la próxima carta será mayor o menor.
-- Control de aciertos.
-- Control de errores.
-- Condición de finalización.
-- Guardado del resultado en Supabase al finalizar la partida.
+- ¿Cuál es la capital de determinado país?
+- ¿Qué país tiene determinada capital?
+- ¿En qué región se encuentra determinado país?
 
 Datos guardados:
 
@@ -99,26 +98,101 @@ Datos guardados:
 - Juego.
 - Resultado.
 - Puntaje.
-- Tiempo.
-- Cantidad de aciertos.
-- Datos adicionales del desempeño.
+- Tiempo en segundos.
+- Aciertos.
+- Errores.
+- Total de preguntas.
+- Porcentaje de acierto.
+- API utilizada.
 
-## Chat global
+---
 
-- Sala de chat única para usuarios registrados y logueados.
-- Envío de mensajes.
-- Guardado de mensajes en Supabase.
-- Actualización automática usando Supabase Realtime.
-- Los mensajes aparecen sin recargar la página.
-- Cada mensaje muestra:
-  - Usuario.
-  - Mensaje.
-  - Fecha y hora.
-- El mensaje propio se diferencia visualmente del resto.
+## Juego propio: Space Shot
 
-## Tablas utilizadas
+Space Shot es un juego de reflejos y precisión donde aparecen planetas, meteoritos y naves.
 
-### `mensajes_chat`
+El jugador debe tocar únicamente los meteoritos peligrosos antes de que lleguen al final de la pantalla.
+
+## Reglas de Space Shot
+
+- Aparecen objetos espaciales en movimiento.
+- El jugador debe tocar solo los meteoritos.
+- Los meteoritos se identifican con el símbolo ☄️.
+- Tocar un meteorito suma puntos y cuenta como acierto.
+- Tocar planetas o naves suma errores y resta puntos.
+- Si un meteorito llega al final de la pantalla, también suma un error.
+- La partida dura 30 segundos.
+- La partida también puede terminar antes si el jugador llega al límite de errores.
+
+## Datos guardados de Space Shot
+
+Al finalizar la partida se guarda en Supabase:
+
+- Usuario que jugó.
+- Juego.
+- Resultado.
+- Puntaje.
+- Tiempo jugado.
+- Aciertos.
+- Errores.
+- Objetos tocados.
+- Tiempo restante.
+- Regla principal del juego.
+
+---
+
+## Página Resultados
+
+- Se creó la página Resultados.
+- Se muestran cuatro tablas separadas:
+  - Ahorcado.
+  - Mayor o Menor.
+  - Preguntados.
+  - Space Shot.
+- Cada tabla muestra:
+  - Posición.
+  - Jugador.
+  - Resultado.
+  - Puntaje.
+  - Tiempo.
+  - Aciertos.
+  - Errores.
+  - Detalle.
+  - Fecha.
+- Las tablas se ordenan de mejor desempeño a peor:
+  - Mayor puntaje primero.
+  - Menor tiempo como criterio secundario.
+  - Resultado más reciente como criterio adicional.
+- Los resultados se leen desde la tabla `resultados_juegos`.
+
+---
+
+## Página Quién Soy
+
+- Se actualizó la página Quién Soy.
+- Se agregó la descripción completa del juego propio.
+- Se agregaron las reglas de Space Shot.
+- Se agregó la forma de finalización.
+- Se agregó cómo se mide el desempeño del jugador.
+
+---
+
+# Base de datos
+
+## Tabla `usuarios`
+
+Guarda los datos personales del usuario registrado.
+
+Campos principales:
+
+- `id`
+- `email`
+- `nombre`
+- `apellido`
+- `edad`
+- `created_at`
+
+## Tabla `mensajes_chat`
 
 Guarda los mensajes del chat global.
 
@@ -130,9 +204,9 @@ Campos principales:
 - `mensaje`
 - `created_at`
 
-### `resultados_juegos`
+## Tabla `resultados_juegos`
 
-Guarda los resultados de los juegos.
+Guarda los resultados de todos los juegos.
 
 Campos principales:
 
@@ -145,10 +219,28 @@ Campos principales:
 - `datos`
 - `created_at`
 
+La columna `datos` se usa para guardar información específica de cada juego.
+
 ---
 
-# Estado del Sprint 3
+# Checklist de cumplimiento Sprint 4
 
-Sprint 3 completado.
+- Preguntados obtiene datos de una API externa.
+- Preguntados usa botones como opciones de respuesta.
+- Preguntados guarda resultados en Supabase.
+- Space Shot funciona como juego propio.
+- Space Shot tiene condiciones de finalización.
+- Space Shot guarda datos de desempeño.
+- Quién Soy explica el juego propio.
+- Resultados muestra cuatro tablas.
+- Las tablas están ordenadas de mejor desempeño a peor.
+- No se utiliza `alert()`.
+- Diseño uniforme con Bootstrap y SCSS.
 
-La aplicación quedó con Ahorcado, Mayor o Menor, chat global en tiempo real y persistencia de datos en Supabase.
+---
+
+# Estado del Sprint 4
+
+Sprint 4 completado.
+
+La aplicación queda con los cuatro juegos requeridos, chat global en tiempo real, autenticación, persistencia en Supabase y página de resultados con cuatro tablas.
