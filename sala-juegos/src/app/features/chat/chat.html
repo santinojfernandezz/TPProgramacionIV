@@ -1,48 +1,69 @@
-<section class="chat-container">
-  <div class="chat-card">
-    <a routerLink="/home" class="back-link">← Volver al Home</a>
+<section class="chat-container app-page">
+  <div class="container">
+    <div class="chat-card app-card fade-up">
+      <a routerLink="/home" class="back-link">
+        ← Volver al Home
+      </a>
 
-    <h1>Chat global</h1>
+      <div class="chat-header">
+        <span class="badge badge-app rounded-pill px-3 py-2 mb-3">
+          Sala en tiempo real
+        </span>
 
-    <p class="description">
-      Sala única para usuarios logueados. Los mensajes se actualizan en tiempo real.
-    </p>
+        <h1 class="app-title">
+          Chat global
+        </h1>
 
-    <div *ngIf="loading" class="loading">
-      Cargando mensajes...
-    </div>
+        <p class="description app-subtitle">
+          Sala única para usuarios logueados. Los mensajes se actualizan automáticamente.
+        </p>
+      </div>
 
-    <div *ngIf="errorMessage" class="error-message">
-      {{ errorMessage }}
-    </div>
+      <div *ngIf="loading()" class="loading">
+        Cargando mensajes...
+      </div>
 
-    <div class="messages" *ngIf="!loading">
-      <div
-        *ngFor="let message of messages"
-        class="message"
-        [class.own-message]="isOwnMessage(message)"
-      >
-        <div class="message-header">
-          <strong>{{ message.nombre_usuario }}</strong>
-          <span>{{ formatDate(message.created_at) }}</span>
+      <div *ngIf="errorMessage()" class="error-message">
+        {{ errorMessage() }}
+      </div>
+
+      <div class="messages" *ngIf="!loading()">
+        <div
+          *ngFor="let message of messages()"
+          class="message"
+          [class.own-message]="isOwnMessage(message)"
+        >
+          <div class="message-header">
+            <strong>{{ message.nombre_usuario }}</strong>
+            <span>{{ formatDate(message.created_at) }}</span>
+          </div>
+
+          <p>{{ message.mensaje }}</p>
         </div>
 
-        <p>{{ message.mensaje }}</p>
+        <div *ngIf="messages().length === 0" class="empty-chat">
+          Todavía no hay mensajes. Sé el primero en escribir.
+        </div>
       </div>
+
+      <form class="chat-form" (ngSubmit)="sendMessage()">
+        <input
+          type="text"
+          name="newMessage"
+          [ngModel]="newMessage()"
+          (ngModelChange)="updateNewMessage($event)"
+          placeholder="Escribí un mensaje..."
+          maxlength="250"
+          autocomplete="off"
+        >
+
+        <button
+          type="submit"
+          [disabled]="sending() || !newMessage().trim()"
+        >
+          {{ sending() ? 'Enviando...' : 'Enviar' }}
+        </button>
+      </form>
     </div>
-
-    <form class="chat-form" (ngSubmit)="sendMessage()">
-      <input
-        type="text"
-        name="newMessage"
-        [(ngModel)]="newMessage"
-        placeholder="Escribí un mensaje..."
-        maxlength="250"
-      >
-
-      <button type="submit" [disabled]="sending || !newMessage.trim()">
-        {{ sending ? 'Enviando...' : 'Enviar' }}
-      </button>
-    </form>
   </div>
 </section>
