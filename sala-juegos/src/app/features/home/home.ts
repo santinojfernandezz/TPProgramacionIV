@@ -42,17 +42,11 @@ export class Home implements OnInit, OnDestroy {
     this.loading.set(true);
 
     try {
-<<<<<<< HEAD
-      this.userProfile = await this.authService.getCurrentUserProfile();
-    } catch (error) {
-      this.userProfile = null;
-=======
       const profile = await this.authService.getCurrentUserProfile();
       this.userProfile.set(profile);
     } catch (error) {
       console.error('Error cargando usuario en Home:', error);
       this.userProfile.set(null);
->>>>>>> sprint3
     } finally {
       this.loading.set(false);
     }
