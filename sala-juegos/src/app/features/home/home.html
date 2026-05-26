@@ -1,111 +1,64 @@
-<section class="home-container app-page">
-  <div class="container">
-    <div class="hero app-card fade-up text-center mx-auto">
-      <span class="badge badge-app rounded-pill px-3 py-2 mb-3">
-        Programación IV · Sala de Juegos
-      </span>
+import { CommonModule } from '@angular/common';
+import { Component, OnDestroy, OnInit, signal } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../../core/services/auth.service';
 
-      <h1 class="app-title display-4 mb-3">
-        Sala de Juegos
-      </h1>
+@Component({
+  selector: 'app-home',
+  standalone: true,
+  imports: [CommonModule, RouterLink],
+  templateUrl: './home.html',
+  styleUrl: './home.scss'
+})
+export class Home implements OnInit, OnDestroy {
 
-      <p class="app-subtitle lead mb-4">
-        Poné a prueba tus capacidades cognitivas y motrices con juegos simples,
-        dinámicos y pensados para competir por el mejor resultado.
-      </p>
+  userProfile = signal<any>(null);
+  loading = signal<boolean>(true);
 
-      <div *ngIf="loading" class="loading-text">
-        Cargando usuario...
-      </div>
+  private authSubscription: any = null;
 
-      <div
-        class="hero-buttons d-flex justify-content-center align-items-center gap-3 flex-wrap"
-        *ngIf="!loading"
-      >
-        <ng-container *ngIf="!userProfile; else loggedTemplate">
-          <a routerLink="/login" class="btn btn-app-primary px-4 py-2">
-            Iniciar sesión
-          </a>
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
-          <a routerLink="/register" class="btn btn-app-outline px-4 py-2">
-            Registrarse
-          </a>
+  ngOnInit() {
+    this.loadUser();
 
-          <a routerLink="/quien-soy" class="btn btn-app-outline px-4 py-2">
-            Quién soy
-          </a>
-        </ng-container>
+    const { data } = this.authService.onAuthStateChange(() => {
+      this.loadUser();
+    });
 
-        <ng-template #loggedTemplate>
-          <span class="welcome-text">
-            Bienvenido, {{ userProfile.nombre || userProfile.email }}
-          </span>
+    this.authSubscription = data.subscription;
+  }
 
-          <button
-            class="btn btn-app-outline px-4 py-2"
-            type="button"
-            (click)="logout()"
-          >
-            Cerrar sesión
-          </button>
-        </ng-template>
-      </div>
-    </div>
+  ngOnDestroy() {
+    if (this.authSubscription) {
+      this.authSubscription.unsubscribe();
+    }
+  }
 
-    <div class="games-preview row g-4 mt-4">
-      <div class="col-12 col-md-6 col-xl-4">
-        <a routerLink="/ahorcado" class="game-card app-card h-100 soft-pop active-card">
-          <div class="game-icon">🎯</div>
-          <h3>Ahorcado</h3>
-          <p>Adiviná la palabra antes de quedarte sin intentos.</p>
-          <span class="status available">Disponible</span>
-        </a>
-      </div>
+  async loadUser() {
+    this.loading.set(true);
 
-      <div class="col-12 col-md-6 col-xl-4">
-        <a routerLink="/mayor-menor" class="game-card app-card h-100 soft-pop active-card">
-          <div class="game-icon">🃏</div>
-          <h3>Mayor o Menor</h3>
-          <p>Predecí si la próxima carta será mayor o menor.</p>
-          <span class="status available">Disponible</span>
-        </a>
-      </div>
+    try {
+      const profile = await this.authService.getCurrentUserProfile();
+      this.userProfile.set(profile);
+    } catch (error) {
+      console.error('Error cargando usuario en Home:', error);
+      this.userProfile.set(null);
+    } finally {
+      this.loading.set(false);
+    }
+  }
 
-      <div class="col-12 col-md-6 col-xl-4">
-        <a routerLink="/preguntados" class="game-card app-card h-100 soft-pop active-card">
-          <div class="game-icon">❓</div>
-          <h3>Preguntados</h3>
-          <p>Respondé preguntas de una API externa y sumá puntos por cada acierto.</p>
-          <span class="status available">Disponible</span>
-        </a>
-      </div>
-
-      <div class="col-12 col-md-6 col-xl-4">
-        <a routerLink="/space-shot" class="game-card app-card h-100 soft-pop active-card">
-          <div class="game-icon">🚀</div>
-          <h3>Space Shot</h3>
-          <p>Tocá solo los meteoritos peligrosos antes de que choquen.</p>
-          <span class="status available">Disponible</span>
-        </a>
-      </div>
-
-      <div class="col-12 col-md-6 col-xl-4">
-        <a routerLink="/chat" class="game-card app-card h-100 soft-pop active-card">
-          <div class="game-icon">💬</div>
-          <h3>Chat global</h3>
-          <p>Conversá en tiempo real con otros usuarios logueados.</p>
-          <span class="status available">Disponible</span>
-        </a>
-      </div>
-
-      <div class="col-12 col-md-6 col-xl-4">
-        <a routerLink="/resultados" class="game-card app-card h-100 soft-pop active-card">
-          <div class="game-icon">🏆</div>
-          <h3>Resultados</h3>
-          <p>Consultá las tablas de desempeño de los cuatro juegos.</p>
-          <span class="status available">Disponible</span>
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
+  async logout() {
+    try {
+      await this.authService.logout();
+      this.userProfile.set(null);
+      await this.router.navigate(['/home']);
+    } catch (error) {
+      console.error('Error al cerrar sesión:', error);
+    }
+  }
+}

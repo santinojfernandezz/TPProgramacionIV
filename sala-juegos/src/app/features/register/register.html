@@ -10,6 +10,7 @@
           class="register-card app-card fade-up"
           [formGroup]="form"
           (ngSubmit)="onSubmit()"
+          novalidate
         >
           <span class="badge badge-app rounded-pill px-3 py-2 mb-3">
             Nuevo jugador
@@ -28,63 +29,88 @@
               <label class="form-label">Email</label>
               <input
                 class="form-control"
+                [class.is-invalid]="isInvalid('email')"
                 type="email"
                 placeholder="Ingresá tu email"
                 formControlName="email"
               >
+
+              <div *ngIf="isInvalid('email')" class="invalid-feedback d-block">
+                {{ getEmailError() }}
+              </div>
             </div>
 
             <div class="col-12 col-md-6">
               <label class="form-label">Nombre</label>
               <input
                 class="form-control"
+                [class.is-invalid]="isInvalid('nombre')"
                 type="text"
                 placeholder="Ingresá tu nombre"
                 formControlName="nombre"
               >
+
+              <div *ngIf="isInvalid('nombre')" class="invalid-feedback d-block">
+                {{ getNombreError() }}
+              </div>
             </div>
 
             <div class="col-12 col-md-6">
               <label class="form-label">Apellido</label>
               <input
                 class="form-control"
+                [class.is-invalid]="isInvalid('apellido')"
                 type="text"
                 placeholder="Ingresá tu apellido"
                 formControlName="apellido"
               >
+
+              <div *ngIf="isInvalid('apellido')" class="invalid-feedback d-block">
+                {{ getApellidoError() }}
+              </div>
             </div>
 
             <div class="col-12">
               <label class="form-label">Edad</label>
               <input
                 class="form-control"
+                [class.is-invalid]="isInvalid('edad')"
                 type="number"
                 placeholder="Ingresá tu edad"
                 formControlName="edad"
               >
+
+              <div *ngIf="isInvalid('edad')" class="invalid-feedback d-block">
+                {{ getEdadError() }}
+              </div>
             </div>
 
             <div class="col-12">
               <label class="form-label">Contraseña</label>
               <input
                 class="form-control"
+                [class.is-invalid]="isInvalid('password')"
                 type="password"
                 placeholder="Ingresá tu contraseña"
                 formControlName="password"
               >
+
+              <div *ngIf="isInvalid('password')" class="invalid-feedback d-block">
+                {{ getPasswordError() }}
+              </div>
             </div>
           </div>
 
           <button
             class="btn btn-app-primary w-100 py-2 mt-4 mb-3"
             type="submit"
-            [disabled]="loading"
+            [disabled]="loading()"
           >
-            {{ loading ? 'Registrando...' : 'Registrarse' }}
+            {{ loading() ? 'Registrando...' : 'Registrarse' }}
           </button>
 
-          <div *ngIf="errorMessage" class="error-message">
-            {{ errorMessage }}
+          <div *ngIf="errorMessage()" class="error-message">
+            {{ errorMessage() }}
           </div>
 
           <p class="auth-link mb-0 text-center">

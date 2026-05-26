@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
@@ -13,12 +13,14 @@ import { ChatMessage, ChatService } from '../../core/services/chat.service';
   styleUrl: './chat.scss'
 })
 export class Chat implements OnInit, OnDestroy {
-  messages: ChatMessage[] = [];
-  newMessage = '';
-  currentUserId = '';
-  errorMessage = '';
-  loading = true;
-  sending = false;
+
+  messages = signal<ChatMessage[]>([]);
+  newMessage = signal<string>('');
+  currentUserId = signal<string>('');
+  errorMessage = signal<string>('');
+  loading = signal<boolean>(true);
+  sending = signal<boolean>(false);
+
   channel: any = null;
 
   constructor(
@@ -30,48 +32,59 @@ export class Chat implements OnInit, OnDestroy {
     await this.loadChat();
 
     this.channel = this.chatService.subscribeToMessages((message) => {
-      this.messages = [...this.messages, message];
+      this.messages.update((currentMessages) => [
+        ...currentMessages,
+        message
+      ]);
     });
   }
 
   async loadChat() {
+    this.loading.set(true);
+    this.errorMessage.set('');
+
     try {
       const user = await this.authService.getCurrentUser();
 
       if (user) {
-        this.currentUserId = user.id;
+        this.currentUserId.set(user.id);
       }
 
-      this.messages = await this.chatService.getMessages();
+      const loadedMessages = await this.chatService.getMessages();
+      this.messages.set(loadedMessages);
     } catch (error: any) {
-      this.errorMessage = error.message || 'No se pudo cargar el chat.';
+      this.errorMessage.set(error.message || 'No se pudo cargar el chat.');
     } finally {
-      this.loading = false;
+      this.loading.set(false);
     }
   }
 
   async sendMessage() {
-    const message = this.newMessage.trim();
+    const message = this.newMessage().trim();
 
-    if (!message || this.sending) {
+    if (!message || this.sending()) {
       return;
     }
 
-    this.sending = true;
-    this.errorMessage = '';
+    this.sending.set(true);
+    this.errorMessage.set('');
 
     try {
       await this.chatService.sendMessage(message);
-      this.newMessage = '';
+      this.newMessage.set('');
     } catch (error: any) {
-      this.errorMessage = error.message || 'No se pudo enviar el mensaje.';
+      this.errorMessage.set(error.message || 'No se pudo enviar el mensaje.');
     } finally {
-      this.sending = false;
+      this.sending.set(false);
     }
   }
 
+  updateNewMessage(value: string) {
+    this.newMessage.set(value);
+  }
+
   isOwnMessage(message: ChatMessage): boolean {
-    return message.usuario_id === this.currentUserId;
+    return message.usuario_id === this.currentUserId();
   }
 
   formatDate(date: string): string {

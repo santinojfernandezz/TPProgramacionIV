@@ -10,6 +10,7 @@
           class="login-card app-card fade-up"
           [formGroup]="form"
           (ngSubmit)="onSubmit()"
+          novalidate
         >
           <span class="badge badge-app rounded-pill px-3 py-2 mb-3">
             Acceso de jugador
@@ -27,20 +28,30 @@
             <label class="form-label">Email</label>
             <input
               class="form-control"
+              [class.is-invalid]="isInvalid('email')"
               type="email"
               placeholder="Ingresá tu email"
               formControlName="email"
             >
+
+            <div *ngIf="isInvalid('email')" class="invalid-feedback d-block">
+              {{ getEmailError() }}
+            </div>
           </div>
 
           <div class="mb-4">
             <label class="form-label">Contraseña</label>
             <input
               class="form-control"
+              [class.is-invalid]="isInvalid('password')"
               type="password"
               placeholder="Ingresá tu contraseña"
               formControlName="password"
             >
+
+            <div *ngIf="isInvalid('password')" class="invalid-feedback d-block">
+              {{ getPasswordError() }}
+            </div>
           </div>
 
           <button
